@@ -1,0 +1,46 @@
+{
+  "EmpInfo": [
+    {
+      "EmpId" : 1,
+      "EmpMailID": "manish@dirtybit.com",
+      "EmpName": "manish",
+      "Department": "IT",
+      "Designation": "Software Engineer"
+    },
+    {
+      "EmpId" : 2,
+      "EmpMailID": "rahul@dirtybit.com",
+      "EmpName": "Rahul",
+      "Department": "IT",
+      "Designation": "Lead Engineer"
+    },
+    {
+      "EmpId" : 3,
+      "EmpMailID": "ashish@dirtybit.com",
+      "EmpName": "Ashish",
+      "Department": "IT",
+      "Designation": "Manager"
+    },
+    {
+      "EmpId" : 4,
+      "EmpMailID": "alice@dirtybit.com",
+      "EmpName": "Alice",
+      "Department": "sale",
+      "Designation": "Sale Manager"
+    },
+    {
+      "EmpId" : 5,
+      "EmpMailID": "Arun@dirtybit.com",
+      "EmpName": "Arun",
+      "Department": "Sale",
+      "Designation": "Sale Person"
+    },
+    {
+      "EmpId" : 6,
+      "EmpMailID": "parul@dirtybit.com",
+      "EmpName": "Parul",
+      "Department": "Marketing",
+      "Designation": "Marketing Assitant"
+    }
+  ]
+}
