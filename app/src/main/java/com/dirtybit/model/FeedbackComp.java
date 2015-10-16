@@ -9,7 +9,16 @@ public class FeedbackComp {
     private Integer EmpID;
     private Integer Rating;
     private String FeedbackDescription;
-    private String EventName;
+    private int EventNo;
+    private int PolicyNo;
+
+    public int getPolicyNo() {
+        return PolicyNo;
+    }
+
+    public void setPolicyNo(int policyNo) {
+        PolicyNo = policyNo;
+    }
 
     /**
      *
@@ -107,17 +116,17 @@ public class FeedbackComp {
      * @return
      * The EventName
      */
-    public String getEventName() {
-        return EventName;
+    public int getEventNo() {
+        return EventNo;
     }
 
     /**
      *
-     * @param EventName
+     * @param EventNo
      * The EventName
      */
-    public void setEventName(String EventName) {
-        this.EventName = EventName;
+    public void setEventNo(int EventNo) {
+        this.EventNo = EventNo;
     }
 
 

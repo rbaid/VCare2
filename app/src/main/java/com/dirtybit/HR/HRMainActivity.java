@@ -33,14 +33,6 @@ public class HRMainActivity extends AppCompatActivity {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
 
-    final static String DEPT_HR = "HR";
-    final static String DEPT_IT = "IT";
-    final static String DEPT_MARKETING = "Marketing";
-    final static String DEPT_FINANCE = "finance";
-    final static String DEPT_SALES = "Sales";
-    final static String DEPT_ADMIN = "Admin";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +66,8 @@ public class HRMainActivity extends AppCompatActivity {
         List<String> general = new ArrayList<String>();
         List<String> policy = new ArrayList<String>();
         List<String> event = new ArrayList<String>();
-
+        if (feedbackData == null)
+            parseDatafromJson();
         List<FeedbackDetail> list = feedbackData.getFeedbackDetails();
         for (FeedbackDetail feedbackDetail : list) {
             for (Feedback feedback1 : feedbackDetail.getFeedback()) {
@@ -105,83 +98,12 @@ public class HRMainActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(2), event);
     }
 
-    private void parseDatafromJson() {
+    public void parseDatafromJson() {
         Resources resources = getApplicationContext().getResources();
         InputStream inputStream = resources.openRawResource(R.raw.feedback_detail);
-        String FeedbackDetailString = convertStreamToString(inputStream);
+        String FeedbackDetailString = DataUtils.convertStreamToString(inputStream);
         Gson gson = new Gson();
         feedbackData = gson.fromJson(FeedbackDetailString, FeedbackData.class);
-    }
-
-
-    public HashMap getdata() {
-        HashMap<String, Integer> DeptRatingMap = new HashMap<String, Integer>();
-
-        // Adding child data
-        List<String> general = new ArrayList<String>();
-        List<String> policy = new ArrayList<String>();
-        List<String> event = new ArrayList<String>();
-
-        int ratingArray[] = new int[6];
-        int EmpCount[] = new int[6];
-
-        List<FeedbackDetail> list = feedbackData.getFeedbackDetails();
-        for (FeedbackDetail feedbackDetail : list) {
-            for (Feedback Dayfeedback : feedbackDetail.getFeedback()) {
-                String department = feedbackDetail.getDepartment();
-                if (DEPT_HR.equals(department)) {
-                    ratingArray[0] = ratingArray[0] + Dayfeedback.getDayRating().intValue();
-                    EmpCount[0]++;
-                } else if (DEPT_IT.equals(department)) {
-                    ratingArray[1] = ratingArray[1] + Dayfeedback.getDayRating().intValue();
-                    EmpCount[1]++;
-                } else if (DEPT_MARKETING.equals(department)) {
-                    ratingArray[2] = ratingArray[2] + Dayfeedback.getDayRating().intValue();
-                    EmpCount[2]++;
-                } else if (DEPT_SALES.equals(department)) {
-                    ratingArray[3] = ratingArray[3] + Dayfeedback.getDayRating().intValue();
-                    EmpCount[3]++;
-                } else if (DEPT_FINANCE.equals(department)) {
-                    ratingArray[4] = ratingArray[4] + Dayfeedback.getDayRating().intValue();
-                    EmpCount[4]++;
-                } else if (DEPT_ADMIN.equals(department)) {
-                    ratingArray[5] = ratingArray[5] + Dayfeedback.getDayRating().intValue();
-                    EmpCount[5]++;
-                }
-            }
-        }
-
-        for (int i = 0; i < 6; i++) {
-            ratingArray[i] = ratingArray[i]/EmpCount[i];
-        }
-        DeptRatingMap.put("HR", ratingArray[0]);
-        DeptRatingMap.put("IT", ratingArray[1]);
-        DeptRatingMap.put("Marketing", ratingArray[2]);
-        DeptRatingMap.put("Sales", ratingArray[3]);
-        DeptRatingMap.put("finance", ratingArray[4]);
-        DeptRatingMap.put("Admin", ratingArray[5]);
-        return  DeptRatingMap;
-    }
-
-    public String convertStreamToString(InputStream is) {
-        /*
-         * To convert the InputStream to String we use the
-		 * BufferedReader.readLine() method. We iterate until the BufferedReader
-		 * return null which means there's no more data to read. Each line will
-		 * appended to a StringBuilder and returned as String.
-		 */
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuffer sb = new StringBuffer();
-
-        String line = null;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
     }
 
     @Override

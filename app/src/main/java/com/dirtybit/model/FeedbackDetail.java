@@ -6,16 +6,8 @@ public class FeedbackDetail {
 
     private Integer EmpId;
     private String EmpName;
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     private String department;
+    private List<Feedback> Feedback = new ArrayList<Feedback>();
 
     public String getEmpName() {
         return EmpName;
@@ -25,8 +17,14 @@ public class FeedbackDetail {
         EmpName = empName;
     }
 
-    private List<Feedback> Feedback = new ArrayList<Feedback>();
 
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
     /**
      *
      * @return
