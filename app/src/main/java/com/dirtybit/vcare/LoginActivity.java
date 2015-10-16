@@ -6,9 +6,11 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -28,6 +30,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.dirtybit.model.AllFeedBackDetail;
+import com.dirtybit.model.FeedbackData;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +60,7 @@ public class LoginActivity extends Activity{
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
 
                 Log.i("com.LoginActivity" , "Email " + email + " Password " + password);
-                if(email.equals("employee") && password.equals("employee")) {
+                if(email.equals("employee") && password.equals("e")) {
                     startActivity(employee_intent);
                 }
                 else if(email.equals("hr") && password.equals("hr")) {
@@ -65,6 +71,19 @@ public class LoginActivity extends Activity{
                 }
             }
         });
+        parseData();
     }
+
+    void parseData(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String FeedbackDetailString = sharedPreferences.getString("FeedbackDetail", null);
+        Gson gson = new Gson();
+        FeedbackData feedbackData = gson.fromJson(FeedbackDetailString, FeedbackData.class);
+        Log.i("Ritu", "json login reading = " + FeedbackDetailString);
+        AllFeedBackDetail.getInstance().setFeedbackData(feedbackData);
+
+    }
+
 }
 

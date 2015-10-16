@@ -1,12 +1,17 @@
 package com.dirtybit.HR;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
+import com.dirtybit.model.AllFeedBackDetail;
 import com.dirtybit.model.EmpInfo;
 import com.dirtybit.model.Feedback;
 import com.dirtybit.model.FeedbackComp;
@@ -51,7 +56,6 @@ public class HRMainActivity extends AppCompatActivity {
     /*
         * Preparing the list data
         */
-    FeedbackData feedbackData;
 
     private void prepareListData() {
 
@@ -66,9 +70,12 @@ public class HRMainActivity extends AppCompatActivity {
         List<String> general = new ArrayList<String>();
         List<String> policy = new ArrayList<String>();
         List<String> event = new ArrayList<String>();
-        if (feedbackData == null)
-            parseDatafromJson();
-        List<FeedbackDetail> list = feedbackData.getFeedbackDetails();
+if(AllFeedBackDetail.getInstance().getFeedbackData() == null) {
+    Toast.makeText(getApplicationContext(),"No data to analyze yet" , Toast.LENGTH_LONG).show();
+    finish();
+return;
+}
+        List<FeedbackDetail> list = AllFeedBackDetail.getInstance().getFeedbackData().getFeedbackDetails();
         for (FeedbackDetail feedbackDetail : list) {
             for (Feedback feedback1 : feedbackDetail.getFeedback()) {
                 for (FeedbackComp feedbackComp : feedback1.getFeedbackComp()) {
@@ -99,11 +106,17 @@ public class HRMainActivity extends AppCompatActivity {
     }
 
     public void parseDatafromJson() {
-        Resources resources = getApplicationContext().getResources();
+        /*Resources resources = getApplicationContext().getResources();
         InputStream inputStream = resources.openRawResource(R.raw.feedback_detail);
         String FeedbackDetailString = DataUtils.convertStreamToString(inputStream);
         Gson gson = new Gson();
-        feedbackData = gson.fromJson(FeedbackDetailString, FeedbackData.class);
+        feedbackData = gson.fromJson(FeedbackDetailString, FeedbackData.class);*/
+        SharedPreferences sharedPreferences = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String FeedbackDetailString = sharedPreferences.getString("FeedbackDetail", null);
+        Log.i("Ritu", "json reading = " + FeedbackDetailString);
+        Gson gson = new Gson();
+        FeedbackData feedbackData1 = gson.fromJson(FeedbackDetailString, FeedbackData.class);
+        AllFeedBackDetail.getInstance().setFeedbackData(feedbackData1);
     }
 
     @Override

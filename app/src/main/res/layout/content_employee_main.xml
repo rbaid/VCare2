@@ -15,7 +15,7 @@
         android:text="How would you rate your day?" />
 
     <RatingBar
-        android:id="@+id/trating"
+        android:id="@+id/ratingbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?android:attr/ratingBarStyle"
