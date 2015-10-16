@@ -5,6 +5,26 @@ import java.util.List;
 public class FeedbackDetail {
 
     private Integer EmpId;
+    private String EmpName;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    private String department;
+
+    public String getEmpName() {
+        return EmpName;
+    }
+
+    public void setEmpName(String empName) {
+        EmpName = empName;
+    }
+
     private List<Feedback> Feedback = new ArrayList<Feedback>();
 
     /**

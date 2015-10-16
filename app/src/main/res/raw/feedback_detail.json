@@ -2,6 +2,8 @@
   "FeedbackDetails": [
     {
       "EmpId": 1,
+      "EmpName": "manish",
+      "Department": "IT",
       "Feedback": [
         {
           "FeebbackDate": 1443768194000,
@@ -25,32 +27,34 @@
             }
           ]
         },
+        {
+          "FeebbackDate": 1453768194000,
+          "DayRating": 2,
+          "FeedbackComp": [
             {
-              "FeebbackDate": 1453768194000,
-              "DayRating": 2,
-              "FeedbackComp": [
-                {
-                  "FeedbackType": 2,
-                  "Rating": 1,
-                  "FeedbackDescription": "1 to 1 is not done yet"
-                },
-                {
-                  "FeedbackType": 2,
-                  "Rating": 2,
-                  "FeedbackDescription": "Time bound"
-                },
-                {
-                  "FeedbackType": 3,
-                  "EventName": "Dancing Ball",
-                  "Rating": 5,
-                  "FeedbackDescription": "Nice"
-                }
-              ]
+              "FeedbackType": 2,
+              "Rating": 1,
+              "FeedbackDescription": "1 to 1 is not done yet"
+            },
+            {
+              "FeedbackType": 2,
+              "Rating": 2,
+              "FeedbackDescription": "Time bound"
+            },
+            {
+              "FeedbackType": 3,
+              "EventName": "Dancing Ball",
+              "Rating": 5,
+              "FeedbackDescription": "Nice"
             }
           ]
+        }
+      ]
     },
     {
       "EmpId": 2,
+      "EmpName": "manish",
+      "Department": "IT",
       "Feedback": [
         {
           "FeebbackDate": 1443768194000,
