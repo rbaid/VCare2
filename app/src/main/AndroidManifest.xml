@@ -16,18 +16,20 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name="com.dirtybit.HR.HRMainActivity"
             android:label="@string/title_activity_hrmain" >
-
+        </activity>
+        <activity
+            android:name=".EmployeeMainActivity"
+            android:label="@string/title_activity_employee_main"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 
