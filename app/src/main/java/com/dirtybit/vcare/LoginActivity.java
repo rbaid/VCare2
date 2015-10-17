@@ -11,6 +11,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -31,10 +32,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dirtybit.Charts.BarChartActivity;
+import com.dirtybit.Charts.ChartActivity;
+import com.dirtybit.Charts.PieChartFragment;
+import com.dirtybit.HR.DataUtils;
 import com.dirtybit.model.AllFeedBackDetail;
 import com.dirtybit.model.FeedbackData;
 import com.google.gson.Gson;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +61,8 @@ public class LoginActivity extends Activity{
             public void onClick(View view) {
                 Intent hr_intent = new Intent(LoginActivity.this, com.dirtybit.HR.HRMainActivity.class);
                 Intent employee_intent = new Intent(LoginActivity.this,EmployeeMainActivity.class);
+                Intent c_intent = new Intent(LoginActivity.this,BarChartActivity.class);
+                Intent b_intent = new Intent(LoginActivity.this,ChartActivity.class);
 
                 String email = ((EditText) findViewById(R.id.email)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
@@ -66,6 +74,12 @@ public class LoginActivity extends Activity{
                 else if(email.equals("hr") && password.equals("hr")) {
                     startActivity(hr_intent);
                 }
+                else if(email.equals("c") && password.equals("c")) {
+                    startActivity(c_intent);
+                }
+                else if(email.equals("b") && password.equals("b")) {
+                    startActivity(b_intent);
+                }
                 else {
                     Toast.makeText(LoginActivity.this,"Wrong username or password",Toast.LENGTH_LONG).show();
                 }
@@ -74,16 +88,24 @@ public class LoginActivity extends Activity{
         parseData();
     }
 
-    void parseData(){
+    void parseData() {
 
         SharedPreferences sharedPreferences = getSharedPreferences("mypref", Context.MODE_PRIVATE);
         String FeedbackDetailString = sharedPreferences.getString("FeedbackDetail", null);
-        Gson gson = new Gson();
-        FeedbackData feedbackData = gson.fromJson(FeedbackDetailString, FeedbackData.class);
-        Log.i("Ritu", "json login reading = " + FeedbackDetailString);
-        AllFeedBackDetail.getInstance().setFeedbackData(feedbackData);
+        if (FeedbackDetailString == null) {
+            Resources resources = getApplicationContext().getResources();
+            InputStream inputStream = resources.openRawResource(R.raw.feedback_detail);
+            String FeedbackDetailString1 = DataUtils.convertStreamToString(inputStream);
+            Gson gson = new Gson();
+            FeedbackData feedbackData = gson.fromJson(FeedbackDetailString1, FeedbackData.class);
+            AllFeedBackDetail.getInstance().setFeedbackData(feedbackData);
+        } else {
+            Gson gson = new Gson();
+            FeedbackData feedbackData = gson.fromJson(FeedbackDetailString, FeedbackData.class);
+            Log.i("Ritu", "json login reading = " + FeedbackDetailString);
+            AllFeedBackDetail.getInstance().setFeedbackData(feedbackData);
 
+        }
     }
-
 }
 

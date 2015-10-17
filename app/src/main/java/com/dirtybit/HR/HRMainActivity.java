@@ -116,12 +116,12 @@ return;
         String FeedbackDetailString = DataUtils.convertStreamToString(inputStream);
         Gson gson = new Gson();
         feedbackData = gson.fromJson(FeedbackDetailString, FeedbackData.class);*/
-        SharedPreferences sharedPreferences = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        /*SharedPreferences sharedPreferences = getSharedPreferences("mypref", Context.MODE_PRIVATE);
         String FeedbackDetailString = sharedPreferences.getString("FeedbackDetail", null);
         Log.i("Ritu", "json reading = " + FeedbackDetailString);
         Gson gson = new Gson();
         FeedbackData feedbackData1 = gson.fromJson(FeedbackDetailString, FeedbackData.class);
-        AllFeedBackDetail.getInstance().setFeedbackData(feedbackData1);
+        AllFeedBackDetail.getInstance().setFeedbackData(feedbackData1);*/
     }
 
     @Override

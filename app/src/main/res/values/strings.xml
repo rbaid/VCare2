@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">VCare</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">VCare</string>
     <string name="general_message">General Feedback</string>
     <string name="event_message">Feedback Regarding Events</string>
     <string name="policy_message">Feedback Regarding Policies</string>
