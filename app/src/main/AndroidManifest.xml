@@ -31,6 +31,10 @@
             android:label="@string/title_activity_employee_main"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".ThankyouActivity"
+            android:label="@string/title_activity_thankyou" >
+        </activity>
     </application>
 
 </manifest>

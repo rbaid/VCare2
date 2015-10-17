@@ -39,5 +39,8 @@
         <item>FOOD</item>
         <item>COMPOFF</item>
     </string-array>
+    <string name="title_activity_thankyou">Thank you</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
