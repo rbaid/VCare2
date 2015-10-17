@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 public class EmployeeMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -150,54 +151,77 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submit_btn:
+
                 FeedbackData feedbackData = AllFeedBackDetail.getInstance().getFeedbackData();
                 if (feedbackData == null) {
                     feedbackData = new FeedbackData();
                 }
+
+
+                String dept[] = {"HR","IT","MARKETING","FINANCE","SALES","ADMIN"};
+                String names[] = {"Rajan","Kamal","Suresh","Ramesh","Ritu","Rishabh","Daksh",
+                "Shilpa"};
+
+
+
                 List<FeedbackDetail> feedbackDetailList = feedbackData.getFeedbackDetails();
-                FeedbackDetail feedbackDetail = new FeedbackDetail();
-                feedbackDetail.setEmpName("Ritu");
-                feedbackDetail.setEmpId(1);
-                feedbackDetail.setDepartment("HR");
-                List<Feedback> feedbacks = new ArrayList<>();
-                Feedback feedback = new Feedback();
-                Calendar calendar = Calendar.getInstance();
-                long currentTime = calendar.getTimeInMillis();
-                feedback.setFeebbackDate(currentTime);
-                feedback.setDayRating((int) ratingBar.getRating());
-                List<FeedbackComp> feedbackComps = new ArrayList<>();
-                int policyNo = policySpinner.getSelectedItemPosition();
-                if (policyNo > 0) {
-                    FeedbackComp policyFeedbackComp = new FeedbackComp();
-                    policyFeedbackComp.setPolicyNo(policyNo);
-                    if (policy_description.getText() != null)
-                        policyFeedbackComp.setFeedbackDescription(policy_description.getText().toString());
-                    policyFeedbackComp.setRating((int) policyRating.getRating());
-                    policyFeedbackComp.setFeedbackType(1);
-                    feedbackComps.add(policyFeedbackComp);
+                for(int i=1;i<=100;i++) {
+                    Random rand = new Random();
+                    int min = 0, max=25;
+                    int randomNum, randomNum1, randNum2, randNum3,randNum4;
+                    FeedbackDetail feedbackDetail = new FeedbackDetail();
+                    randomNum1 = rand.nextInt((max - min) + 1) + min;
+                    randNum2 = rand.nextInt((max - min) + 1) + min;
+                    randNum3 = rand.nextInt((max - min) + 1) + min;
+                    randNum4 =  rand.nextInt((max - min) + 1) + min;
+                    String name = ("a" + randNum2) + ("a" + randNum3) + ("a"+randNum3) + ("a"+randomNum1) ;
+                    feedbackDetail.setEmpName(name);
+                    feedbackDetail.setEmpId(rand.nextInt(100 + 1) + 1);
+                    String department = dept[rand.nextInt(5+1)];
+                    feedbackDetail.setDepartment(department);
+                    List<Feedback> feedbacks = new ArrayList<>();
+                    Feedback feedback = new Feedback();
+                    Calendar calendar = Calendar.getInstance();
+                    long currentTime = calendar.getTimeInMillis();
+                    feedback.setFeebbackDate(currentTime);
+                    feedback.setDayRating((int) ratingBar.getRating());
+                    List<FeedbackComp> feedbackComps = new ArrayList<>();
+                    int policyNo = policySpinner.getSelectedItemPosition();
+                    if (policyNo > 0) {
+                        FeedbackComp policyFeedbackComp = new FeedbackComp();
+                        policyFeedbackComp.setPolicyNo(policyNo);
+                        if (policy_description.getText() != null)
+                            policyFeedbackComp.setFeedbackDescription(policy_description.getText().toString());
+                        policyFeedbackComp.setRating((int) policyRating.getRating());
+                        policyFeedbackComp.setFeedbackType(1);
+                        feedbackComps.add(policyFeedbackComp);
+                    }
+
+                    int eventNo = eventSpinner.getSelectedItemPosition();
+                    if (eventNo > 0) {
+                        FeedbackComp eventFeedbackComp = new FeedbackComp();
+                        int feedbacktype = rand.nextInt(2 + 1) + 1;
+                        eventFeedbackComp.setFeedbackType(feedbacktype);
+                        eventFeedbackComp.setEventNo(eventNo);
+                        if (event_description.getText() != null)
+                            eventFeedbackComp.setFeedbackDescription(event_description.getText().toString());
+                        eventFeedbackComp.setRating((int) eventRating.getRating());
+                        feedbackComps.add(eventFeedbackComp);
+                    }
+                    if (!isNullOrEmpty(general_description.getText().toString())) {
+                        FeedbackComp generalFeedbackComp = new FeedbackComp();
+                        int feedbacktype = rand.nextInt(2 + 1) + 1;
+                        generalFeedbackComp.setFeedbackType(feedbacktype);
+                        generalFeedbackComp.setFeedbackDescription(general_description.getText().toString());
+                        feedbackComps.add(generalFeedbackComp);
+                    }
+
+                    feedback.setFeedbackComp(feedbackComps);
+                    feedbacks.add(feedback);
+                    feedbackDetail.setFeedback(feedbacks);
+                    feedbackDetailList.add(feedbackDetail);
                 }
 
-                int eventNo = eventSpinner.getSelectedItemPosition();
-                if (eventNo > 0) {
-                    FeedbackComp eventFeedbackComp = new FeedbackComp();
-                    eventFeedbackComp.setFeedbackType(3);
-                    eventFeedbackComp.setEventNo(eventNo);
-                    if (event_description.getText() != null)
-                        eventFeedbackComp.setFeedbackDescription(event_description.getText().toString());
-                    eventFeedbackComp.setRating((int) eventRating.getRating());
-                    feedbackComps.add(eventFeedbackComp);
-                }
-                if (!isNullOrEmpty(general_description.getText().toString())) {
-                    FeedbackComp generalFeedbackComp = new FeedbackComp();
-                    generalFeedbackComp.setFeedbackType(2);
-                    generalFeedbackComp.setFeedbackDescription(general_description.getText().toString());
-                    feedbackComps.add(generalFeedbackComp);
-                }
-
-                feedback.setFeedbackComp(feedbackComps);
-                feedbacks.add(feedback);
-                feedbackDetail.setFeedback(feedbacks);
-                feedbackDetailList.add(feedbackDetail);
                 Gson gson = new Gson();
                 String feedbackJson = gson.toJson(feedbackData, FeedbackData.class);
                 SharedPreferences sharedPreferences = getSharedPreferences("mypref", Context.MODE_PRIVATE);
