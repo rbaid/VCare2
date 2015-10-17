@@ -30,6 +30,16 @@
             <item>DIWALI</item>
         </string-array>
 
+    <string-array name="department_spinner">
+        <item>Select a Department</item>
+        <item>IT</item>
+        <item>HR</item>
+        <item>MARKETING</item>
+        <item>FINANCE</item>
+        <item>SALES</item>
+        <item>ADMIN</item>
+    </string-array>
+
     <string-array name="policy_array">
         <item>Select a Policy</item>
         <item>TIME</item>

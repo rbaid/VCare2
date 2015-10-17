@@ -1,5 +1,8 @@
 package com.dirtybit.Charts;
 
+import com.dirtybit.HR.DataUtils;
+import com.dirtybit.model.AllFeedBackDetail;
+
 import java.util.Map;
 
 public class AnalyticData {
@@ -13,11 +16,15 @@ public class AnalyticData {
     }
     private AnalyticData() {}
 
-    private int[] rating = {1,2,5,4,6};
+    private int[] rating;
 
 
     public int[] getRating() {
-        return rating;
+
+        DataUtils dataUtils = new DataUtils();
+            return dataUtils.getCompanyPieChartData(AllFeedBackDetail.getInstance().getFeedbackData());
+
+       // return rating;
     }
 
     public void setRating(int[] rating) {

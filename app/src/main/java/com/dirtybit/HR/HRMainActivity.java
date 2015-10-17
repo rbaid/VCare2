@@ -1,6 +1,7 @@
 package com.dirtybit.HR;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +12,16 @@ import android.view.MenuItem;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.dirtybit.Charts.BarChartActivity;
+import com.dirtybit.Charts.ChartActivity;
+import com.dirtybit.Charts.Helper;
 import com.dirtybit.model.AllFeedBackDetail;
 import com.dirtybit.model.EmpInfo;
 import com.dirtybit.model.Feedback;
 import com.dirtybit.model.FeedbackComp;
 import com.dirtybit.model.FeedbackData;
 import com.dirtybit.model.FeedbackDetail;
+import com.dirtybit.vcare.LoginActivity;
 import com.dirtybit.vcare.R;
 import com.google.gson.Gson;
 
@@ -135,6 +140,33 @@ return;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent b_intent = new Intent(HRMainActivity.this,LoginActivity.class);
+            startActivity(b_intent);
+            return true;
+        }
+        if (id == R.id.pie1) {
+            Helper.status = 1;
+            Intent b_intent = new Intent(HRMainActivity.this,ChartActivity.class);
+            startActivity(b_intent);
+            return true;
+        }
+        if (id == R.id.pie2) {
+            Helper.status = 2;
+            Intent b_intent = new Intent(HRMainActivity.this,BarChartActivity.class);
+            startActivity(b_intent);
+            return true;
+        }
+        if (id == R.id.bar1) {
+            Helper.status = 3;
+            Intent b_intent = new Intent(HRMainActivity.this,BarChartActivity.class);
+            startActivity(b_intent);
+            return true;
+        }
+
+        if (id == R.id.bar2) {
+            Helper.status = 4;
+            Intent b_intent = new Intent(HRMainActivity.this,BarChartActivity.class);
+            startActivity(b_intent);
             return true;
         }
 

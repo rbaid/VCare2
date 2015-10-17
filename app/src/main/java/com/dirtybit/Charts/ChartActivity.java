@@ -19,9 +19,5 @@ public class ChartActivity extends AppCompatActivity {
         PieChartFragment fragment = new PieChartFragment();
         fragmentTransaction.add(R.id.container, fragment);
         fragmentTransaction.commit();
-
-//        BarChartFragment barChartFragment = new BarChartFragment();
-//        fragmentTransaction.add(R.id.container,barChartFragment);
-//        fragmentTransaction.commit();
     }
 }
