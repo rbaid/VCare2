@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -54,7 +55,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         general_description = (TextView) findViewById(R.id.general_description);
         eventRating = (RatingBar) findViewById(R.id.rating_event);
         policyRating = (RatingBar) findViewById(R.id.rating_policy);
-
+        initPolicyLayout();
         findViewById(R.id.submit_btn).setOnClickListener(this);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +117,33 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return true;
+    }
+
+    void initPolicyLayout(){
+        findViewById(R.id.event).setVisibility(View.GONE);
+        findViewById(R.id.general).setVisibility(View.GONE);
+        findViewById(R.id.policy).setVisibility(View.VISIBLE);
+        Spinner spinner = (Spinner) findViewById(R.id.policy_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(EmployeeMainActivity.this,
+                R.array.policy_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                adapterView.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override

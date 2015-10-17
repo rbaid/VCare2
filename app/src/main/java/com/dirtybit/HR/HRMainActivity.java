@@ -82,15 +82,15 @@ return;
                     int feedbackType = feedbackComp.getFeedbackType();
                     switch (feedbackType) {
                         case 3:
-                            event.add(feedbackDetail.getEmpName()
+                            event.add("  "+feedbackDetail.getEmpName()
                                     + " : " + feedbackComp.getFeedbackDescription());
                             break;
                         case 2:
-                            general.add(feedbackDetail.getEmpName()
+                            general.add("  "+feedbackDetail.getEmpName()
                                     + " : " + feedbackComp.getFeedbackDescription());
                             break;
                         case 1:
-                            policy.add(feedbackDetail.getEmpName()
+                            policy.add("  "+feedbackDetail.getEmpName()
                                     + " : " + feedbackComp.getFeedbackDescription());
                             break;
                         default:

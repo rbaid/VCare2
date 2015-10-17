@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id = "@+id/helpframe"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></FrameLayout>
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar_layout"
         android:layout_width="match_parent"
@@ -24,200 +29,236 @@
         android:layout_height="match_parent"
         android:layout_below="@id/bar_layout">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <include
-            android:id="@+id/rating_layout"
-            layout="@layout/content_employee_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
-
         <RelativeLayout
-            android:id="@+id/buttonLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rating_layout"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
+            <include
+                android:id="@+id/rating_layout"
+                layout="@layout/content_employee_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" />
+
+            <RelativeLayout
+                android:id="@+id/buttonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rating_layout"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:src="@android:drawable/ic_dialog_info" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:text="General" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:src="@android:drawable/ic_dialog_info" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:text="Event" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:src="@android:drawable/ic_dialog_info" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:text="Policy" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/feedback_detail_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/buttonLayout">
+
+                <LinearLayout
+                    android:id="@+id/general"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:text="General Feedback"
+                        android:textSize="22sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1.1dp"
+                        android:background="#8c000000"
+                        android:padding="4dp" />
+
+                    <EditText
+                        android:id="@+id/general_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:hint="Please provide Detail" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:text="Event Feedback"
+                        android:textSize="22sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1.1dp"
+                        android:background="#8c000000"
+                        android:padding="4dp" />
+
+                    <Spinner
+                        android:id="@+id/event_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="20dp" />
+
+                    <RatingBar
+                        android:id="@+id/rating_event"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:stepSize="0.5" />
+
+                    <EditText
+                        android:id="@+id/event_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please Provide Details" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:text="Policy Feedback"
+                        android:textSize="22sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1.1dp"
+                        android:background="#8c000000"
+                        android:padding="4dp" />
+
+                    <Spinner
+                        android:id="@+id/policy_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="20dp" />
+
+                    <RatingBar
+                        android:id="@+id/rating_policy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:stepSize="0.5" />
+
+                    <EditText
+                        android:id="@+id/policy_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please Provide Details" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/savebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@android:drawable/ic_dialog_info" />
+                android:layout_below="@id/feedback_detail_layout"
+                android:layout_marginRight="10dp"
+                android:text="Save" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab2"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/savebtn"
                 android:layout_centerInParent="true"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@android:drawable/ic_dialog_info" />
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@android:drawable/ic_dialog_info" />
+                android:layout_margin="10dp"
+                android:text="Submit" />
         </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/feedback_detail_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/buttonLayout">
-
-            <LinearLayout
-                android:id="@+id/general"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="7dp"
-                    android:text="General Feedback"
-                    android:textSize="22sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1.1dp"
-                    android:background="#8c000000"
-                    android:padding="4dp" />
-
-                <EditText
-                    android:id="@+id/general_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="Please provide Detail" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/event"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:visibility="gone"
-                android:paddingRight="10dp"
-               >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="7dp"
-                    android:text="Event Feedback"
-                    android:textSize="22sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1.1dp"
-                    android:background="#8c000000"
-                    android:padding="4dp" />
-
-                <Spinner
-                    android:id="@+id/event_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="20dp" />
-
-                <RatingBar
-                    android:id="@+id/rating_event"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:stepSize="0.5" />
-
-                <EditText
-                    android:id="@+id/event_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Please Provide Details" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/policy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="7dp"
-                    android:text="Policy Feedback"
-                    android:textSize="22sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1.1dp"
-                    android:background="#8c000000"
-                    android:padding="4dp" />
-
-                <Spinner
-                    android:id="@+id/policy_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="20dp" />
-
-                <RatingBar
-                    android:id="@+id/rating_policy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:stepSize="0.5" />
-
-                <EditText
-                    android:id="@+id/policy_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Please Provide Details" />
-
-            </LinearLayout>
-        </RelativeLayout>
-        <Button
-            android:id="@+id/savebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:text="Save"
-            android:layout_below="@id/feedback_detail_layout"/>
-
-        <Button
-            android:id="@+id/submit_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_centerInParent="true"
-            android:text="Submit"
-            android:layout_below="@id/savebtn"/>
-    </RelativeLayout>
-</ScrollView>
+    </ScrollView>
 </RelativeLayout>
