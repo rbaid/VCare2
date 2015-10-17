@@ -20,16 +20,14 @@
     <string name="title_activity_employee_main">"Feedback"</string>
     <string name="title_activity_hrmain">Feedback</string>
 
-
         <string-array name="event_array">
             <item>Select an Event</item>
-            <item>Venus</item>
-            <item>Earth</item>
-            <item>Mars</item>
-            <item>Jupiter</item>
-            <item>Saturn</item>
-            <item>Uranus</item>
-            <item>Neptune</item>
+            <item>DANCE</item>
+            <item>PAINTING</item>
+            <item>MUSIC</item>
+            <item>SPORTS</item>
+            <item>GAME</item>
+            <item>DIWALI</item>
         </string-array>
 
     <string-array name="policy_array">
